@@ -1,6 +1,7 @@
 import pprint
 import csv
 import random
+import math
 
 csvFileName = 'pima-indians-diabetes.csv'
 
@@ -33,7 +34,12 @@ def separateByClass(dataset):
 def mean(numbers):
   return sum(numbers) / len(numbers)
 
-dataset = loadCsv(csvFileName)
-separated = separateByClass(dataset)
-pprint.pprint(separated)
+def stdev(numbers):
+  avg = mean(numbers)
+  variance = sum([pow(x - avg, 2) for x in numbers])
+  return math.sqrt(variance)
 
+nums = [1,1,1,1,1]
+nums2 = [10,1,5,1,1]
+print(stdev(nums))
+print(stdev(nums2))
