@@ -30,6 +30,10 @@ def separateByClass(dataset):
     separated[classValue].append(verctor)
   return separated
 
+def mean(numbers):
+  return sum(numbers) / len(numbers)
+
 dataset = loadCsv(csvFileName)
 separated = separateByClass(dataset)
 pprint.pprint(separated)
+
