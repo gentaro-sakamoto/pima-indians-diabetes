@@ -1,5 +1,8 @@
+import pprint
 import csv
 import random
+
+csvFileName = 'pima-indians-diabetes.csv'
 
 def loadCsv(filename):
   rows = csv.reader(open(filename, 'r'))
@@ -17,6 +20,16 @@ def splitDataset(dataset, splitRatio):
     trainSet.append(copiedDataSet.pop(index))
   return [trainSet, copiedDataSet]
 
-train, test = splitDataset(loadCsv('pima-indians-diabetes.csv'), 0.6)
-print(train)
-print(test)
+def separateByClass(dataset):
+  separated ={}
+  for i in range(len(dataset)):
+    verctor = dataset[i]
+    classValue = verctor[-1]
+    if (classValue not in separated):
+      separated[classValue] = []
+    separated[classValue].append(verctor)
+  return separated
+
+dataset = loadCsv(csvFileName)
+separated = separateByClass(dataset)
+pprint.pprint(separated)
