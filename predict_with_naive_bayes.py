@@ -39,7 +39,9 @@ def stdev(numbers):
   variance = sum([pow(x - avg, 2) for x in numbers])
   return math.sqrt(variance)
 
-nums = [1,1,1,1,1]
-nums2 = [10,1,5,1,1]
-print(stdev(nums))
-print(stdev(nums2))
+def summarize(dataset):
+  summaries = [(mean(attr), stdev(attr)) for attr in zip(*dataset)]
+  del summaries[-1]
+  return summaries
+
+pprint.pprint(summarize(loadCsv(csvFileName)))
